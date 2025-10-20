@@ -160,10 +160,15 @@ def web(web_settings: WebOptions, downloader_settings: DownloaderOptions):
 
     logger.info("Starting web server \n")
 
-    # Add signal handlers for graceful shutdown
-    def handle_shutdown(signum, frame):
-        app_state.server.should_exit = True
+    def handle_shutdown(signum, frame):  # pylint: disable=unused-argument
+        """
+        Signal handler to gracefully shut down the web server.
 
+        signum (int): The signal number received (e.g., SIGINT, SIGTERM).
+        frame (FrameType): The current stack frame.
+
+        """
+        app_state.server.should_exit = True
 
     signal.signal(signal.SIGINT, handle_shutdown)
     signal.signal(signal.SIGTERM, handle_shutdown)
