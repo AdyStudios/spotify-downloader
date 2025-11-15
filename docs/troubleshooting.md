@@ -141,15 +141,6 @@ As common issues or questions are encountered solutions will be added to this gu
     KeyError: "Unable to find 'header' using path ['header', 'musicCardShelfHeaderBasicRenderer', 'title', 'runs', 0, 'text']"
     ```
 
-    Full traceback may include:
-
-    ```
-    File "ytmusicapi/parsers/search.py", line 36, in parse_top_result
-        search_result = {"category": nav(data, CARD_SHELF_TITLE), "resultType": result_type}
-    File "ytmusicapi/navigation.py", line 121, in nav
-        raise type(e)(f"Unable to find '{k}' using path {items!r} on {root!r}, exception
-    ```
-
     ### Solution
 
     1. Update ytmusicapi to v1.11.1 or later:
@@ -161,7 +152,7 @@ As common issues or questions are encountered solutions will be added to this gu
     2. If the error persists, reinstall spotdl:
 
         ```bash
-        pip install -U spotdl
+        pip install -U --force spotdl
         ```
 
     3. If you're still experiencing issues, the error may be intermittent due to YouTube's anti-bot mechanisms. Wait a few minutes and try again.
