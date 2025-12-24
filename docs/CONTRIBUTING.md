@@ -47,7 +47,7 @@ following:
 
 - Open an [Issue](https://github.com/spotDL/spotify-downloader/issues/new).
 - Provide as much context as you can about what you're running into.
-- Provide project and platform versions (nodejs, npm, etc), depending on what seems relevant.
+- Provide project and platform versions (Node.js, npm, etc.), depending on what seems relevant.
 
 We will then take care of the issue as soon as possible.
 
@@ -191,25 +191,37 @@ git clone [your username]/spotify-downloader
 cd spotify-downloader
 ```
 
-**Install poetry**
+- Install uv
 
-```
-pip install poetry
-```
+  ```bash
+  pip install uv
+  ```
 
-**Then, to install spotDL in-place, run the following**
+- Install spotDL in-place
 
-```
-poetry install
-```
+  ```bash
+  uv sync
+  ```
 
-**Then, to activate virtual environment run the following**
+- Activate virtual environment
 
-```
-poetry shell
-```
+=== "macOS and Linux"
 
-All changes will now affect the poetry installation of the spotDL cli.
+    ```bash
+    source .venv/bin/activate
+    ```
+
+=== "Windows"
+
+    ```console
+    .venv\Scripts\activate
+    ```
+
+- OR you can prefix all commands with `uv run`
+
+  ```bash
+  uv run spotdl -h
+  ```
 
 ### Linting, Formatting and Type-checking
 
@@ -237,10 +249,10 @@ All changes will now affect the poetry installation of the spotDL cli.
   mypy ./spotdl
   ```
 
-- You can install these basic tools with
+- We use [`isort`](https://pypi.org/project/isort/) for sorting imports
 
   ```bash
-  pip install --force-reinstall --upgrade mypy black pylint
+  isort --check --diff ./spotdl
   ```
 
 ### Python Documentation
@@ -251,23 +263,13 @@ Any submitted code is expected to have accompanying documentation
 
 - We generate our documentation with [`mkdocs`](https://www.mkdocs.org/)
 
-  ```bash
-  pip install mkdocs
-  ```
-
-  `mkdocs` requires that all development packages are installed
-
-  ```bash
-  poetry install
-  ```
-
-  generate docs with
+  Generate docs with
 
   ```bash
   mkdocs build --strict
   ```
 
-  view docs live-time while editing with
+  View docs in real-time while editing with
 
   ```bash
   mkdocs serve
@@ -277,8 +279,8 @@ Any submitted code is expected to have accompanying documentation
 
 - For functions
 
-  ```
-  one-liner about functions purpose
+  ```text
+  one-liner about function's purpose
 
   ### Args (optional)
   - arg_name: description
@@ -295,7 +297,7 @@ Any submitted code is expected to have accompanying documentation
 
 - For Classes
 
-  ```
+  ```text
   one-liner about class purpose
 
   ### Attributes
@@ -307,17 +309,17 @@ Any submitted code is expected to have accompanying documentation
 
 - For modules/package `__init__`
 
-  ```
-  at max 3 lines about module/package purpose
+  ```text
+  At most 3 lines about module/package purpose
 
-  optional usage example for module/package preferably showcasing most commonly used functionality
+  Optional usage example for module/package, preferably showcasing most commonly used functionality
   ```
 
 #### Notes about docstrings
 
 - DocStrings are Inherited
 
-  ```
+  ```text
   class A:
       def test(self):
           """Docstring for A."""
